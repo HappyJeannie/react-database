@@ -37,55 +37,21 @@ header div.logo span.text {
 }
 header div.user {
   margin-right: 20px;
-  color: #333;
-  padding-top: 10px;
 }
 header div.user ul {
   display: flex;
-  flex-direction: row;
-  height: 40px;
 }
 header div.user ul li {
+  padding: 0px 4px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
-header div.user ul li a {
-  color: inherit;
-}
-header div.user ul li a.login {
-  height: 40px;
-  line-height: 40px;
-  background: #00d3aa;
-  border-radius: 20px;
-  padding: 0px 20px;
-  display: block;
-  vertical-align: top;
-  color: #fff;
-}
-header div.user ul li a.login span {
+header div.user ul li .icon {
   display: inline-block;
-  vertical-align: top;
-  font-size: 14px;
-  font-weight: normal;
-}
-header div.user ul li.avatar {
-  cursor: default;
-  height: 40px;
-  width: 40px;
-  border: 1px solid #00d3aa;
-  border-radius: 50%;
-  background: #00d3aa;
+  width: 20px;
+  height: 20px;
+  background: url('user.png') no-repeat center center;
+  background-size: contain;
   margin-right: 6px;
-}
-header div.user ul li.avatar img {
-  width: 100%;
-}
-header div.user ul li.name,
-header div.user ul li.line,
-header div.user ul li.logout {
-  line-height: 40px;
-  padding: 0 6px;
-  cursor: default;
-}
-header div.user ul li.logout {
-  cursor: default;
 }

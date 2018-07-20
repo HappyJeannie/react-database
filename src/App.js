@@ -10,6 +10,8 @@ import Footer from './components/Footer/footer'
 import Header from './components/Header/header'
 import Toast from './components/Toast/toast'
 import AV from './components/leanCloud/leanCloud';
+import Login from './components/login/login'
+import Register from './components/register/register'
 
 class App extends Component {
   constructor(){
@@ -48,7 +50,8 @@ class App extends Component {
               {todos}
             </ol>
           </div>
-          
+          <Login></Login>
+          <Register></Register>
         </main>
         <Toast msg={this.state.tips} ifShow={this.state.showToast}></Toast>
         <Footer></Footer>

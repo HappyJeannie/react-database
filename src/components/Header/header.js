@@ -11,6 +11,14 @@ class Header extends Component{
             <img src={logo} className="App-logo" alt="logo" />
           </span>
         </div>
+        <div className="user">
+          <ul>
+            <li>登录</li>
+            <li>注册</li>
+            {/* <li><span className="icon"></span>yonghu 123</li>
+            <li>登出</li> */}
+          </ul>
+        </div>
       </header>
     )
   }
