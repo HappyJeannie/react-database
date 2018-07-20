@@ -9,16 +9,7 @@ import TodoItem from './todo/todoItem';
 import Footer from './components/Footer/footer'
 import Header from './components/Header/header'
 import Toast from './components/Toast/toast'
-import { save , load } from './localStore';
 import AV from './components/leanCloud/leanCloud';
-
-// var TestObject = AV.Object.extend('TestObject');
-// var testObject = new TestObject();
-// testObject.save({
-//   words: 'Hello World!123'
-// }).then(function(object) {
-//   alert('LeanCloud Rocks!');
-// })
 
 class App extends Component {
   constructor(){
@@ -26,7 +17,7 @@ class App extends Component {
 
     this.state = {
       newTodo : '',
-      todoList : load('todoList') || [{}],
+      todoList : [],
       tips:'123',
       showToast:false
     }
@@ -65,7 +56,6 @@ class App extends Component {
     );
   }
   componentDidUpdate(){
-    save('todoList',this.state.todoList)
   }
   addTodo(msg){
     this.state.todoList.push({
