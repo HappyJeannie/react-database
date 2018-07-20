@@ -10,22 +10,15 @@ import Footer from './components/Footer/footer'
 import Header from './components/Header/header'
 import Toast from './components/Toast/toast'
 import { save , load } from './localStore';
-const AV = require('leancloud-storage');
-const { Query, User } = AV;
-var APP_ID = 'xjbbzrwK85QTacnjquEYLS3E-gzGzoHsz';
-var APP_KEY = '9KXslOhSjWLpw4yNk3HMSb71';
+import AV from './components/leanCloud/leanCloud';
 
-AV.init({
-  appId: APP_ID,
-  appKey: APP_KEY
-});
-var TestObject = AV.Object.extend('TestObject');
-var testObject = new TestObject();
-testObject.save({
-  words: 'Hello World!'
-}).then(function(object) {
-  alert('LeanCloud Rocks!');
-})
+// var TestObject = AV.Object.extend('TestObject');
+// var testObject = new TestObject();
+// testObject.save({
+//   words: 'Hello World!123'
+// }).then(function(object) {
+//   alert('LeanCloud Rocks!');
+// })
 
 class App extends Component {
   constructor(){
