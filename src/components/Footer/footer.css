@@ -1,0 +1,18 @@
+footer {
+  height: 40px;
+  font-size: 12px;
+  background: #fff;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  z-index: 100;
+  line-height: 40px;
+  text-align: center;
+  box-shadow: 0 -4px 6px #efefef;
+  color: #999;
+  letter-spacing: 1px;
+}
+footer a {
+  color: #666;
+}

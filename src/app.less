@@ -1,0 +1,150 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  //animation: App-logo-spin infinite 20s linear;
+  height: 50px;
+  margin-top: 5px;
+}
+
+.App-header {
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+body{
+ 
+  #root{
+    height: 100%;
+    .App{
+      height: 100%;
+    }
+  }
+}
+main{
+  background: #efefef;
+  min-height: 100vh;
+  height: 100vh;
+  padding: 80px 0 60px;
+  display: flex;
+  justify-content: center;
+  .todoList{
+    width: 60%;
+    min-width: 500px;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-radius: 10px;
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #e6e6e6;
+    box-shadow: 0 0px 10px #efefef;
+    
+    .input-box{
+      width: 100%;
+      height: 40px;
+      border:1px solid #e6e6e6;
+      border-radius: 6px;
+      padding: 0 0px 0px 10px;
+      font-size: 14px;
+      color: #666;
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;;
+      input{
+        display: block;
+        width: 100%;
+        height: 20px;
+        line-height: 20px;
+        margin-top: 10px;
+        border: none;
+        font-size: 14px;
+        flex: 1;
+        &:focus{
+          outline: none;
+        }
+      }
+      i{
+        line-height: 40px;
+        border: 1px solid #00d3aa;
+        width: 40px;
+        text-align: center;
+        background: #00d3aa;
+        color: #fff;
+        cursor: pointer;
+      }
+    }
+    h4{
+      text-align: left;
+      line-height: 40px;
+      border-bottom: 1px solid #00d3aa;
+      font-weight: normal;
+      padding-left: 6px;
+      margin-top: 6px;
+      margin-bottom: 10px;
+    }
+    ol{
+      padding: 10px;
+      height: 70%;
+      height: calc(~"100% - 100px");
+      overflow-y: auto; 
+      li{
+        display: flex;
+        line-height: 40px;
+        border-bottom: 1px solid #e6e6e6;
+        padding: 0px 6px;
+        div{
+          width: 100%;
+          text-align: left;
+        }
+        i.icon-icon_right_fill{
+          text-align: center;
+          line-height: 16px;
+          font-size: 14px;
+          width: 20px;
+          height: 20px;
+          border: 1px solid #e6e6e6;
+          border-radius: 4px;
+          text-align: center;
+          line-height: 20px;
+          color: #666;
+          margin-right: 10px;
+          display: inline-block;
+          vertical-align: top;
+          margin-top: 10px;
+          cursor: pointer;
+          &::before{
+            display: none;
+          }
+        }
+        i.icon-icon_delete{
+          float: right;
+          cursor: pointer;
+        }
+        div.isdone{
+          span{
+            text-decoration: line-through;
+            color: #666
+          }
+          i.icon-icon_right_fill{
+            &::before{
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+.Toast{
+  position: fixed;
+  left: 50%;
+  bottom: 100px;
+  transform: translateX(-50%);
+  color: #D15A39;
+  background: #fff;
+  border-radius: 3px;
+  display: none;
+  padding: 0px 20px;
+  height: 36px;
+  text-align: center;
+  line-height: 36px;
+  border-radius: 18px;
+  color: #00d3aa;
+  box-shadow: 0 6px 6px #bfe1db;
+  box-shadow: 0 0px 6px #bfe1db;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+  &.active{
+    display: block;
+    opacity: 1;
+  }
+}

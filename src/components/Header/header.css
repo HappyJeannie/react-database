@@ -1,0 +1,91 @@
+header {
+  height: 60px;
+  font-size: 12px;
+  background: #fff;
+  box-shadow: 0 4px 6px #efefef;
+  border-bottom: 1px solid #efefef;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  z-index: 100;
+  line-height: 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+}
+header div.logo {
+  line-height: 30px;
+  font-size: 14px;
+  color: #333;
+  margin-left: 20px;
+}
+header div.logo span.logo {
+  width: 60px;
+  height: 60px;
+  display: inline-block;
+  vertical-align: top;
+}
+header div.logo span.logo img {
+  width: 100%;
+}
+header div.logo span.text {
+  color: #00d3aa;
+  margin-right: 4px;
+  vertical-align: top;
+}
+header div.user {
+  margin-right: 20px;
+  color: #333;
+  padding-top: 10px;
+}
+header div.user ul {
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+}
+header div.user ul li {
+  cursor: pointer;
+}
+header div.user ul li a {
+  color: inherit;
+}
+header div.user ul li a.login {
+  height: 40px;
+  line-height: 40px;
+  background: #00d3aa;
+  border-radius: 20px;
+  padding: 0px 20px;
+  display: block;
+  vertical-align: top;
+  color: #fff;
+}
+header div.user ul li a.login span {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 14px;
+  font-weight: normal;
+}
+header div.user ul li.avatar {
+  cursor: default;
+  height: 40px;
+  width: 40px;
+  border: 1px solid #00d3aa;
+  border-radius: 50%;
+  background: #00d3aa;
+  margin-right: 6px;
+}
+header div.user ul li.avatar img {
+  width: 100%;
+}
+header div.user ul li.name,
+header div.user ul li.line,
+header div.user ul li.logout {
+  line-height: 40px;
+  padding: 0 6px;
+  cursor: default;
+}
+header div.user ul li.logout {
+  cursor: default;
+}
