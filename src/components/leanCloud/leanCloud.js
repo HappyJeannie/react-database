@@ -100,3 +100,32 @@ export function signIn(userInfo){
     });
   })
 }
+
+export function passwordReset(userInfo){
+  let {email} = userInfo;
+  return new Promise((resolve,reject)=> {
+    AV.User.requestPasswordReset(email)
+      .then((success)=>{
+        console.log('发送成功')
+        console.log(success)
+        resolve({
+          status:200,
+          msg:'发送成功，请查看邮箱'
+        })
+      },
+      (error)=> {
+        console.log(error.code)
+        if(error.code === 205){
+          reject({
+            status:205,
+            msg:'找不到电子邮箱地址对应的用户'
+          })
+        }else{
+          reject({
+            status:error.code,
+            msg:'出错啦'
+          })
+        }
+      });
+  })
+}

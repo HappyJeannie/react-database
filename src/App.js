@@ -11,6 +11,7 @@ import Header from './components/Header/header'
 import Toast from './components/Toast/toast'
 import Login from './components/login/login'
 import Register from './components/register/register'
+import Forget from './components/Forget/forget'
 
 class App extends Component {
   constructor(){
@@ -23,6 +24,7 @@ class App extends Component {
       showToast:false,
       loginShow:false,
       registerShow:false,
+      forgetShow:true,
       userStatus:{
         username:'',
         isLogin:false
@@ -58,6 +60,7 @@ class App extends Component {
         </main>
         <Login status={this.state.loginShow}  hideModal={this.setModalStatus.bind(this)}  registSuccess={this.setLoginStatus.bind(this)} onToast={this.showToast.bind(this)}></Login>
         <Register status={this.state.registerShow} hideModal={this.setModalStatus.bind(this)} registSuccess={this.setLoginStatus.bind(this)} onToast={this.showToast.bind(this)}></Register>
+        <Forget status={this.state.forgetShow} onToast={this.showToast.bind(this)}    hideModal={this.setModalStatus.bind(this)}></Forget>
         <Toast msg={this.state.tips} ifShow={this.state.showToast}></Toast>
         <Footer></Footer>
       </div>
@@ -108,7 +111,8 @@ class App extends Component {
   setModalStatus(e,status){
     this.setState({
       loginShow : status[0],
-      registerShow : status[1]
+      registerShow : status[1],
+      forgetShow : status[2]
     })
   }
   setLoginStatus(e,data){

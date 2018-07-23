@@ -34,7 +34,7 @@ class Login extends Component{
             </div>
             <div className="input-group submit">
               <span onClick={this.setModalStatus.bind(this)}>没有账号？立即注册</span>
-              <span>忘记密码</span>
+              <span onClick={this.setModalStatus.bind(this)}>忘记密码</span>
               <button>确定</button>
             </div>
           </form>
@@ -45,9 +45,11 @@ class Login extends Component{
   setModalStatus(e){
     let status;
     if(e.target.innerText.indexOf('注册') !== -1){
-      status=[false,true];
+      status=[false,true,false];
+    }else if(e.target.innerText.indexOf('忘记') !== -1){
+      status=[false,false,true];
     }else{
-      status=[false,false];
+      status=[false,false,false];
     }
     this.props.hideModal(e,status);
   }

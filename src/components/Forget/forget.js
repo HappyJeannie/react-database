@@ -1,14 +1,13 @@
 import React ,  {Component} from 'react';
 import './forget.css';
-import {signIn} from './../leanCloud/leanCloud';
+import {passwordReset} from './../leanCloud/leanCloud';
 
 class Forget extends Component{
   constructor(props){
     super(props)
     this.state = {
       formData:{
-        username:'',
-        password:''
+        email:''
       }
     }
   }
@@ -19,22 +18,15 @@ class Forget extends Component{
         <div className="shadow" onClick={this.setModalStatus.bind(this)}></div>
         <div className="form">
           <h4>忘记密码</h4>
-          <form onSubmit={this.signIn.bind(this)}>
+          <form onSubmit={this.passwordReset.bind(this)}>
             <div className="input-group">
               <label>
                 <span className="title">邮箱：</span>
-                <input type="text" placeholder="请输入用户名" name="username" value={this.state.formData.username} onChange={this.getUserInfo.bind(this)}/>
-              </label>
-            </div>
-            <div className="input-group">
-              <label>
-                <span className="title">密码：</span>
-                <input type="password" placeholder="请输入密码" name="password" value={this.state.formData.password}  onChange={this.getUserInfo.bind(this)}/>
+                <input type="email" placeholder="请输入注册邮箱" name="email" value={this.state.formData.email} onChange={this.getUserInfo.bind(this)}/>
               </label>
             </div>
             <div className="input-group submit">
-              <span onClick={this.setModalStatus.bind(this)}>没有账号？立即注册</span>
-              <span>忘记密码</span>
+              <span onClick={this.setModalStatus.bind(this)}>登录</span>
               <button>确定</button>
             </div>
           </form>
@@ -44,31 +36,31 @@ class Forget extends Component{
   }
   setModalStatus(e){
     let status;
-    if(e.target.innerText.indexOf('注册') !== -1){
-      status=[false,true];
+    if(e.target.innerText.indexOf('登录') !== -1){
+      status=[true,false,false];
     }else{
-      status=[false,false];
+      status=[false,false,false];
     }
     this.props.hideModal(e,status);
   }
   getUserInfo(e){
     // 获取用户名和密码
     let stateCopy = JSON.parse(JSON.stringify(this.state));
-    if(e.target.type==='password'){
-      stateCopy.formData.password = e.target.value;
-    }else{
-      stateCopy.formData.username = e.target.value;
+    if(e.target.type==='email'){
+      stateCopy.formData.email = e.target.value;
     }
     this.setState(stateCopy);
   }
-  signIn(e){
+  passwordReset(e){
     // 登录
     e.preventDefault();
     let data = this.state.formData;
-    signIn(data).then((res)=>{
+    passwordReset(data).then((res)=>{
       // 注册成功后直接登录
-      this.props.registSuccess(this,{'username':res.info.username,'isLogin':true})
-      this.props.onToast(this,'登录成功')
+      console.log(res);
+      this.props.onToast(this,res.msg)
+      this.props.hideModal(e,[true,false,false]);
+      // 发送成功后直接打开登录页
     },(res)=>{
       console.log('出错')
       console.log(res);
@@ -78,4 +70,4 @@ class Forget extends Component{
   }
 }
 
-export default Login
+export default Forget

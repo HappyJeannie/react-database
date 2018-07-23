@@ -50,9 +50,9 @@ class Register extends Component{
   setModalStatus(e){
     let status;
     if(e.target.innerText.indexOf('登录') !== -1){
-      status=[true,false];
+      status=[true,false,false];
     }else{
-      status=[false,false];
+      status=[false,false,false];
     }
     this.props.hideModal(e,status);
   }
