@@ -9,7 +9,6 @@ import TodoItem from './todo/todoItem';
 import Footer from './components/Footer/footer'
 import Header from './components/Header/header'
 import Toast from './components/Toast/toast'
-import AV from './components/leanCloud/leanCloud';
 import Login from './components/login/login'
 import Register from './components/register/register'
 
@@ -24,7 +23,10 @@ class App extends Component {
       showToast:false,
       loginShow:false,
       registerShow:true,
-      isLogin:false
+      userStatus:{
+        username:'',
+        isLogin:false
+      }
     }
   }
 
@@ -42,7 +44,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Header isLogin={this.state.isLogin} hideToast={this.setModalStatus.bind(this)}></Header>
+        <Header userStatus={this.state.userStatus} hideToast={this.setModalStatus.bind(this)}></Header>
         <main>
           <div className="todoList">
             
@@ -55,7 +57,7 @@ class App extends Component {
           </div>
         </main>
         <Login status={this.state.loginShow}  hideToast={this.setModalStatus.bind(this)}></Login>
-        <Register status={this.state.registerShow} hideToast={this.setModalStatus.bind(this)}></Register>
+        <Register status={this.state.registerShow} hideToast={this.setModalStatus.bind(this)} registSuccess={this.setLoginStatus.bind(this)}></Register>
         <Toast msg={this.state.tips} ifShow={this.state.showToast}></Toast>
         <Footer></Footer>
       </div>
@@ -107,6 +109,16 @@ class App extends Component {
     this.setState({
       loginShow : status[0],
       registerShow : status[1]
+    })
+  }
+  setLoginStatus(e,data){
+    // 设置登录状态
+    console.log('登录成功')
+    console.log(data);
+    this.setState({
+      userStatus:data,
+      registerShow:false,
+      loginShow:false
     })
   }
 }

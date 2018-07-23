@@ -12,12 +12,12 @@ class Header extends Component{
           </span>
         </div>
         <div className="user">
-          <ul className={this.props.isLogin?"":"login"} >
+          <ul className={this.props.userStatus.isLogin?"":"login"} >
             <li onClick={this.setModalStatus.bind(this)}>登录</li>
             <li onClick={this.setModalStatus.bind(this)}>注册</li>
           </ul>
-          <ul className={this.props.isLogin?"login":""} >
-            <li><span className="icon"></span>yonghu 123</li>
+          <ul className={this.props.userStatus.isLogin?"login":""} >
+            <li><span className="icon"></span>{this.props.userStatus.username}</li>
             <li>登出</li>
           </ul>
         </div>
@@ -26,7 +26,7 @@ class Header extends Component{
   }
   setModalStatus(e){
     let status;
-    if(e.target.innerText.indexOf('登录') != -1){
+    if(e.target.innerText.indexOf('登录') !== -1){
       status = [true,false]
     }else{
       status = [false,true]

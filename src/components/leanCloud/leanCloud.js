@@ -1,6 +1,6 @@
 import AV from 'leancloud-storage'
 import AVData from './leancloud-config';
-const { Query, User } = AV;
+//const { Query, User } = AV;
 var APP_ID = AVData.APP_ID;
 var APP_KEY = AVData.APP_KEY;
 

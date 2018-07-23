@@ -42,7 +42,7 @@ class Register extends Component{
   }
   setModalStatus(e){
     let status;
-    if(e.target.innerText.indexOf('登录') != -1){
+    if(e.target.innerText.indexOf('登录') !== -1){
       status=[true,false];
     }else{
       status=[false,false];
@@ -65,8 +65,10 @@ class Register extends Component{
     console.log(e.target);
     let data = this.state.formData;
     signUp(data).then((res)=>{
+      // 注册成功后直接登录
       console.log(res);
       console.log('注册成功')
+      this.props.registSuccess(this,{'username':res.info.username,'isLogin':true})
     },(res)=>{
       console.log('出错')
       console.log(res);
@@ -74,7 +76,6 @@ class Register extends Component{
       console.log('catch')
       console.log(res);
     })
-    return false;
   }
 }
 

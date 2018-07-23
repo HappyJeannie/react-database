@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import Welcome from './Welcome'
-import Question from './Question'
+//import Welcome from './Welcome'
+//import Question from './Question'
 
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();

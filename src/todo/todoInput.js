@@ -7,7 +7,7 @@ class TodoInput extends React.Component{
   submit(e){
     console.log(e.target);
     if(e.key === 'Enter'){
-      if(e.target.value.length == ''){
+      if(e.target.value.length === ''){
         this.props.onToast(e,'新增内容不能为空');
         return false;
       }
@@ -20,7 +20,7 @@ class TodoInput extends React.Component{
   }
   clickSubmit(e){
     let target = e.target.previousSibling;
-    if(target.value.length == ''){
+    if(target.value.length === ''){
       this.props.onToast(e,'新增内容不能为空');
       return false;
     }

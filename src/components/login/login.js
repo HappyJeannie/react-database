@@ -42,7 +42,7 @@ class Login extends Component{
   }
   setModalStatus(e){
     let status;
-    if(e.target.innerText.indexOf('注册') != -1){
+    if(e.target.innerText.indexOf('注册') !== -1){
       status=[false,true];
     }else{
       status=[false,false];
