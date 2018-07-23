@@ -1,6 +1,7 @@
 import React , {Component} from 'react';
 import './header.css';
 import logo from './../../logo.svg';
+import {signOut} from './../leanCloud/leanCloud';
 
 class Header extends Component{
   render(){
@@ -18,7 +19,7 @@ class Header extends Component{
           </ul>
           <ul className={this.props.userStatus.isLogin?"login":""} >
             <li><span className="icon"></span>{this.props.userStatus.username}</li>
-            <li>登出</li>
+            <li onClick={this.singOut.bind(this)}>登出</li>
           </ul>
         </div>
       </header>
@@ -32,6 +33,15 @@ class Header extends Component{
       status = [false,true]
     }
     this.props.hideToast(e,status);
+  }
+  singOut(){
+    console.log('登出')
+    console.log(this);
+    let that = this;
+    signOut().then((res) => {
+      
+      that.props.signOut(that,{'username':'','isLogin':false})
+    })
   }
 }
 
