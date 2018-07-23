@@ -22,7 +22,7 @@ class App extends Component {
       todoList : [],
       tips:'123',
       showToast:false,
-      loginShow:false,
+      loginShow:true,
       registerShow:false,
       isLogin:false
     }

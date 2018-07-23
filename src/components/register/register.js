@@ -2,6 +2,15 @@ import React ,  {Component} from 'react';
 import './register.css';
 
 class Register extends Component{
+  constructor(props){
+    super(props)
+    this.state = {
+      formData:{
+        username:'',
+        password:''
+      }
+    }
+  }
   render(){
     return (
       <div className={this.props.status?"modal-regist active":"modal-regist"}>
@@ -9,22 +18,16 @@ class Register extends Component{
         <div className="form">
           <h4>新用户注册</h4>
           <form>
-            <div className="input-group">
-              <label>
-                <span className="title">邮箱：</span>
-                <input type="text" placeholder="请输入邮箱" name="email" />
-              </label>
-            </div>
-            <div className="input-group">
+          <div className="input-group">
               <label>
                 <span className="title">用户名：</span>
-                <input type="text" placeholder="请输入用户名" name="username" />
+                <input type="text" placeholder="请输入用户名" name="username" value={this.state.formData.username} onChange={this.getUserInfo.bind(this)}/>
               </label>
             </div>
             <div className="input-group">
               <label>
                 <span className="title">密码：</span>
-                <input type="password" placeholder="请输入密码" name="password" />
+                <input type="password" placeholder="请输入密码" name="password" value={this.state.formData.password}  onChange={this.getUserInfo.bind(this)}/>
               </label>
             </div>
             <div className="input-group submit">
@@ -44,6 +47,16 @@ class Register extends Component{
       status=[false,false];
     }
     this.props.hideToast(e,status);
+  }
+  getUserInfo(e){
+    // 获取用户名和密码
+    let stateCopy = JSON.parse(JSON.stringify(this.state));
+    if(e.target.type==='password'){
+      stateCopy.formData.password = e.target.value;
+    }else{
+      stateCopy.formData.username = e.target.value;
+    }
+    this.setState(stateCopy);
   }
 }
 
