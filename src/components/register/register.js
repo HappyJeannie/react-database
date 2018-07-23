@@ -1,5 +1,6 @@
 import React ,  {Component} from 'react';
 import './register.css';
+import {signUp} from './../leanCloud/leanCloud';
 
 class Register extends Component{
   constructor(props){
@@ -17,7 +18,7 @@ class Register extends Component{
         <div className="shadow" onClick={this.setModalStatus.bind(this)}></div>
         <div className="form">
           <h4>新用户注册</h4>
-          <form>
+          <form onSubmit={this.signUp.bind(this)}>
           <div className="input-group">
               <label>
                 <span className="title">用户名：</span>
@@ -57,6 +58,23 @@ class Register extends Component{
       stateCopy.formData.username = e.target.value;
     }
     this.setState(stateCopy);
+  }
+  signUp(e){
+    // 提交表单
+    e.preventDefault();
+    console.log(e.target);
+    let data = this.state.formData;
+    signUp(data).then((res)=>{
+      console.log(res);
+      console.log('注册成功')
+    },(res)=>{
+      console.log('出错')
+      console.log(res);
+    }).catch((res) => {
+      console.log('catch')
+      console.log(res);
+    })
+    return false;
   }
 }
 
