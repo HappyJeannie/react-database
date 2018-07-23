@@ -16,10 +16,12 @@ export function signUp(userInfo){
   // 注册功能
   // 新建 AVUser 对象实例
   let user = new AV.User();
+  let {username,password,email} = userInfo;
   // 设置用户名
-  user.setUsername(userInfo.username);
+  user.setUsername(username);
   // 设置密码
-  user.setPassword(userInfo.password);
+  user.setPassword(password);
+  user.setEmail(email);
   return new Promise((resolve,reject)=> {
     user.signUp().then(function (loggedInUser) {
       resolve({

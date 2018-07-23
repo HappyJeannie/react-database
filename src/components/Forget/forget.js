@@ -1,8 +1,8 @@
 import React ,  {Component} from 'react';
-import './login.css';
+import './forget.css';
 import {signIn} from './../leanCloud/leanCloud';
 
-class Login extends Component{
+class Forget extends Component{
   constructor(props){
     super(props)
     this.state = {
@@ -18,11 +18,11 @@ class Login extends Component{
       <div className={this.props.status?"modal-login active":"modal-login"}>
         <div className="shadow" onClick={this.setModalStatus.bind(this)}></div>
         <div className="form">
-          <h4>登录</h4>
+          <h4>忘记密码</h4>
           <form onSubmit={this.signIn.bind(this)}>
             <div className="input-group">
               <label>
-                <span className="title">用户名：</span>
+                <span className="title">邮箱：</span>
                 <input type="text" placeholder="请输入用户名" name="username" value={this.state.formData.username} onChange={this.getUserInfo.bind(this)}/>
               </label>
             </div>
