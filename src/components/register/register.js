@@ -47,7 +47,7 @@ class Register extends Component{
     }else{
       status=[false,false];
     }
-    this.props.hideToast(e,status);
+    this.props.hideModal(e,status);
   }
   getUserInfo(e){
     // 获取用户名和密码
@@ -62,19 +62,14 @@ class Register extends Component{
   signUp(e){
     // 提交表单
     e.preventDefault();
-    console.log(e.target);
     let data = this.state.formData;
     signUp(data).then((res)=>{
       // 注册成功后直接登录
-      console.log(res);
-      console.log('注册成功')
       this.props.registSuccess(this,{'username':res.info.username,'isLogin':true})
     },(res)=>{
       console.log('出错')
-      console.log(res);
     }).catch((res) => {
       console.log('catch')
-      console.log(res);
     })
   }
 }

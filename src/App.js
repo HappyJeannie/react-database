@@ -44,7 +44,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Header userStatus={this.state.userStatus} hideToast={this.setModalStatus.bind(this)} signOut={this.setLoginStatus.bind(this)}></Header>
+        <Header userStatus={this.state.userStatus} hideModal={this.setModalStatus.bind(this)} signOut={this.setLoginStatus.bind(this)} onToast={this.showToast.bind(this)}></Header>
         <main>
           <div className="todoList">
             
@@ -56,8 +56,8 @@ class App extends Component {
             </ol>
           </div>
         </main>
-        <Login status={this.state.loginShow}  hideToast={this.setModalStatus.bind(this)}  registSuccess={this.setLoginStatus.bind(this)}></Login>
-        <Register status={this.state.registerShow} hideToast={this.setModalStatus.bind(this)} registSuccess={this.setLoginStatus.bind(this)}></Register>
+        <Login status={this.state.loginShow}  hideModal={this.setModalStatus.bind(this)}  registSuccess={this.setLoginStatus.bind(this)} onToast={this.showToast.bind(this)}></Login>
+        <Register status={this.state.registerShow} hideModal={this.setModalStatus.bind(this)} registSuccess={this.setLoginStatus.bind(this)} onToast={this.showToast.bind(this)}></Register>
         <Toast msg={this.state.tips} ifShow={this.state.showToast}></Toast>
         <Footer></Footer>
       </div>

@@ -17,6 +17,7 @@
   box-shadow: 0 0px 6px #bfe1db;
   opacity: 0;
   transition: all 0.5s ease-in-out;
+  z-index: 200;
 }
 .Toast.active {
   display: block;

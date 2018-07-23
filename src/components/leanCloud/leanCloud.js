@@ -28,11 +28,27 @@ export function signUp(userInfo){
         info:loggedInUser.attributes
       })
     }, function (error) {
-      console.log(error);
-      reject({
-        status:400,
-        msg:'用户名被占用'
-      })
+      let errmsg;
+      switch(error.code){
+        case 202:
+          errmsg={
+            status:202,
+            msg:'用户名被占用'
+          }
+        break;
+        case 211:
+          errmsg={
+            status:211,
+            msg:'找不到用户'
+          }
+        break;
+        default:
+         errmsg={
+           status:400,
+           msg:'出错啦'
+         }
+      }
+      reject(errmsg)
     });
   })
 }
@@ -42,8 +58,6 @@ export function signOut(){
   return new Promise((resolve,reject) => {
     AV.User.logOut().then((res)=> {
       // 登出成功
-      console.log('登出成功')
-      console.log(res)
       resolve({
         status:200,
         msg:'登出'
@@ -51,28 +65,36 @@ export function signOut(){
     },(error) => {
       // 操作失败
       console.log('操作失败')
-      console.log(error)
     })
   })
 }
 export function signIn(userInfo){
   let {username,password} = userInfo;
-  // 登出功能
+  // 登录功能
   return new Promise((resolve,reject) => {
     AV.User.logIn(username,password).then(function (loggedInUser) {
-      console.log('登录成功')
-      console.log(loggedInUser)
       resolve({
         status:200,
         msg:'注册成功',
         info:loggedInUser.attributes
       })
     }, function (error) {
-      console.log(error);
-      reject({
-        status:400,
-        msg:'用户名或秘密错误'
-      })
+      let errmsg;
+      switch(error.code){
+        case 210:
+          errmsg={
+            status:210,
+            msg:'用户名或密码不匹配'
+          }
+        break;
+        case 211:
+          errmsg={
+            status:211,
+            msg:'找不到用户'
+          }
+        break;
+      }
+      reject(errmsg)
     });
   })
 }

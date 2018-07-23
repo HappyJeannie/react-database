@@ -32,15 +32,12 @@ class Header extends Component{
     }else{
       status = [false,true]
     }
-    this.props.hideToast(e,status);
+    this.props.hideModal(e,status);
   }
   singOut(){
-    console.log('登出')
-    console.log(this);
-    let that = this;
     signOut().then((res) => {
-      
-      that.props.signOut(that,{'username':'','isLogin':false})
+      this.props.signOut(this,{'username':'','isLogin':false})
+      this.props.onToast(this,res.msg)
     })
   }
 }
