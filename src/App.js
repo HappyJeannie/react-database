@@ -12,6 +12,7 @@ import Toast from './components/Toast/toast'
 import Login from './components/login/login'
 import Register from './components/register/register'
 import Forget from './components/Forget/forget'
+import {currentUser} from './components/leanCloud/leanCloud';
 
 class App extends Component {
   constructor(){
@@ -24,12 +25,24 @@ class App extends Component {
       showToast:false,
       loginShow:false,
       registerShow:false,
-      forgetShow:true,
+      forgetShow:false,
       userStatus:{
         username:'',
         isLogin:false
       }
     }
+    currentUser().then(
+      (res) => {
+        if(res.status=== 200){
+          this.setState({
+            userStatus:{
+              username: res.data.username,
+              isLogin:true
+            }
+          })
+        }
+      }
+    )
   }
 
   render() {

@@ -129,3 +129,21 @@ export function passwordReset(userInfo){
       });
   })
 }
+
+export function currentUser(){
+  return new Promise((resolve,reject) => {
+    let currentUser = AV.User.current();
+    if(currentUser){
+      resolve({
+        status:200,
+        data:currentUser.attributes,
+        msg:'已登录'
+      })
+    }else{
+      resolve({
+        status:201,
+        msg:'未登录'
+      })
+    }
+  })
+}
