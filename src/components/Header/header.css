@@ -39,7 +39,7 @@ header div.user {
   margin-right: 20px;
 }
 header div.user ul {
-  display: flex;
+  display: none;
 }
 header div.user ul li {
   padding: 0px 4px;
@@ -54,4 +54,7 @@ header div.user ul li .icon {
   background: url('user.png') no-repeat center center;
   background-size: contain;
   margin-right: 6px;
+}
+header div.user ul.login {
+  display: flex;
 }

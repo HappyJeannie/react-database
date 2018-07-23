@@ -6,6 +6,9 @@
   height: 100vh;
   z-index: 101;
   display: none;
+  &.active{
+    display: block;
+  }
   .shadow{
     position: absolute;
     top: 0px;
@@ -71,8 +74,16 @@
         }
       }
       &.submit{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
         margin-bottom: 0px;
         text-align: right;
+        span{
+          font-size: 12px;
+          color: #666;
+          cursor: pointer;
+        }
       }
     }
   }

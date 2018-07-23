@@ -21,7 +21,10 @@ class App extends Component {
       newTodo : '',
       todoList : [],
       tips:'123',
-      showToast:false
+      showToast:false,
+      loginShow:false,
+      registerShow:false,
+      isLogin:false
     }
   }
 
@@ -39,7 +42,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Header></Header>
+        <Header isLogin={this.state.isLogin} hideToast={this.setModalStatus.bind(this)}></Header>
         <main>
           <div className="todoList">
             
@@ -50,9 +53,9 @@ class App extends Component {
               {todos}
             </ol>
           </div>
-          <Login></Login>
-          <Register></Register>
         </main>
+        <Login status={this.state.loginShow}  hideToast={this.setModalStatus.bind(this)}></Login>
+        <Register status={this.state.registerShow} hideToast={this.setModalStatus.bind(this)}></Register>
         <Toast msg={this.state.tips} ifShow={this.state.showToast}></Toast>
         <Footer></Footer>
       </div>
@@ -99,6 +102,12 @@ class App extends Component {
         showToast:false
       })
     },1000)
+  }
+  setModalStatus(e,status){
+    this.setState({
+      loginShow : status[0],
+      registerShow : status[1]
+    })
   }
 }
 

@@ -12,15 +12,26 @@ class Header extends Component{
           </span>
         </div>
         <div className="user">
-          <ul>
-            <li>登录</li>
-            <li>注册</li>
-            {/* <li><span className="icon"></span>yonghu 123</li>
-            <li>登出</li> */}
+          <ul className={this.props.isLogin?"":"login"} >
+            <li onClick={this.setModalStatus.bind(this)}>登录</li>
+            <li onClick={this.setModalStatus.bind(this)}>注册</li>
+          </ul>
+          <ul className={this.props.isLogin?"login":""} >
+            <li><span className="icon"></span>yonghu 123</li>
+            <li>登出</li>
           </ul>
         </div>
       </header>
     )
+  }
+  setModalStatus(e){
+    let status;
+    if(e.target.innerText.indexOf('登录') != -1){
+      status = [true,false]
+    }else{
+      status = [false,true]
+    }
+    this.props.hideToast(e,status);
   }
 }
 

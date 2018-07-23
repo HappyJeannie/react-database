@@ -7,6 +7,9 @@
   z-index: 101;
   display: none;
 }
+.modal-login.active {
+  display: block;
+}
 .modal-login .shadow {
   position: absolute;
   top: 0px;
@@ -74,6 +77,14 @@
   outline: none;
 }
 .modal-login .form div.input-group.submit {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   margin-bottom: 0px;
   text-align: right;
+}
+.modal-login .form div.input-group.submit span {
+  font-size: 12px;
+  color: #666;
+  cursor: pointer;
 }
