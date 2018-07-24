@@ -15,7 +15,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "homepage": "/react-list/build",
+  "homepage": "/react-database/build",
   "devDependencies": {
     "less": "^3.7.1",
     "less-loader": "^4.1.0"
