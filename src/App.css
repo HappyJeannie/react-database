@@ -130,10 +130,10 @@ main .todoList ol li i.icon-icon_delete {
   float: right;
   cursor: pointer;
 }
-main .todoList ol li div.isdone span {
+main .todoList ol li div.complete span {
   text-decoration: line-through;
   color: #666;
 }
-main .todoList ol li div.isdone i.icon-icon_right_fill::before {
+main .todoList ol li div.complete i.icon-icon_right_fill::before {
   display: block;
 }

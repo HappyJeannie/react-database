@@ -6,7 +6,10 @@ class TodoInput extends React.Component{
   }
   submit(e){
     if(e.key === 'Enter'){
-      if(e.target.value.length === ''){
+      console.log(111);
+      console.log()
+      if(e.target.value === ''){
+        console.log(123);
         this.props.onToast(e,'新增内容不能为空');
         return false;
       }

@@ -12,7 +12,7 @@ import Toast from './components/Toast/toast'
 import Login from './components/login/login'
 import Register from './components/register/register'
 import Forget from './components/Forget/forget'
-import {currentUser} from './components/leanCloud/leanCloud';
+import {currentUser , findAll , addItem ,doneItem ,delItem} from './components/leanCloud/leanCloud';
 
 class App extends Component {
   constructor(){
@@ -28,7 +28,8 @@ class App extends Component {
       forgetShow:false,
       userStatus:{
         username:'',
-        isLogin:false
+        isLogin:false,
+        userId:''
       }
     }
     currentUser().then(
@@ -37,12 +38,41 @@ class App extends Component {
           this.setState({
             userStatus:{
               username: res.data.username,
-              isLogin:true
+              isLogin:true,
+              userId:res.userId
             }
+          })
+          // let queryData = {
+          //   tableName:"todoList",
+          //   userId:res.userId,
+          //   text:'测试内容'
+          // }
+          // addItem(queryData);
+          let queryData1 = {
+            userId:res.userId,
+            tableName:'todoList'
+          }
+          findAll(queryData1).then((res)=> {
+            let todoList = [];
+            for(let i = 0;i<res.length;i++){
+              let item = {
+                id: res[i].id,
+                idx : i,
+                msg : res[i].attributes.text,
+                isDelete : res[i].attributes.isDelete,
+                hasDone : res[i].attributes.isDone,
+                userId : res[i].attributes.userId
+              };
+              todoList.push(item);
+            }
+            this.setState({
+              todoList:todoList
+            })
           })
         }
       }
     )
+    
   }
 
   render() {
@@ -82,16 +112,35 @@ class App extends Component {
   componentDidUpdate(){
   }
   addTodo(msg){
-    this.state.todoList.push({
-      id: this.state.todoList.filter((item) => item.isDelete === false).length + 1,
-      msg: msg,
+    let item = {
+      idx: this.state.todoList.length,
+      text: msg,
       status: null,
-      isDelete: false
-    })
-    this.setState({
-      newTodo: '',
-      todoList: this.state.todoList
-    })
+      isDelete: false,
+      hasDone:false,
+      id:parseInt(Math.random()*10000),
+      userId : this.state.userStatus.userId
+    }
+    let query = item;
+    query.tableName= 'todoList';
+    addItem(query)
+      .then((res)=>{
+        this.showToast(this,"添加成功");
+        this.state.todoList.push({
+          idx: this.state.todoList.length,
+          msg: msg,
+          status: null,
+          isDelete: false,
+          hasDone:false,
+          id:parseInt(Math.random()*10000),
+          userId : this.state.userStatus.userId
+        })
+        this.setState({
+          newTodo: '',
+          todoList: this.state.todoList
+        })
+      })
+    
     
   }
   changeTitle(event){
@@ -101,13 +150,39 @@ class App extends Component {
     })
   }
   toggle(e,todo){
-    todo.status = todo.status === 'complete' ? '' : 'complete';
+    todo.hasDone = !todo.hasDone
     this.setState(this.state);
+    doneItem({'tableName':'todoList','todoId':todo.id,'isDone':todo.hasDone})
+      .then((res) => {
+        this.showToast(this,"标记成功");
+      })
+
   }
   deleteItem(e,todo){
     todo.isDelete = true;
     this.setState(this.state);
-    
+    delItem({'tableName':'todoList','todoId':todo.id})
+      .then((res) => {
+        this.filterTodoList(todo.idx);
+        this.showToast(this,"删除成功");
+      })
+  }
+  filterTodoList(idx){
+    let data = this.state.todoList;
+    //return false;
+    let newList = [];
+    for(let i = 0; i< data.length;i++){
+      if(i != idx){
+        if(i>idx){
+          data[i].idx -= 1;
+        }
+        newList.push(data[i]);
+      }
+    }
+    console.log(newList);
+    this.setState({
+      todoList:newList
+    })
   }
   showToast(e,msg){
     console.log('展示弹窗')

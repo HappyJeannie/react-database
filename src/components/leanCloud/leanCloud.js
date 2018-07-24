@@ -137,7 +137,8 @@ export function currentUser(){
       resolve({
         status:200,
         data:currentUser.attributes,
-        msg:'已登录'
+        msg:'已登录',
+        userId:currentUser.id
       })
     }else{
       resolve({
@@ -146,4 +147,93 @@ export function currentUser(){
       })
     }
   })
+}
+
+export function findAll(todoItem){
+  // 登录后查询现有待办事项
+  let {tableName , userId} = todoItem;
+  var query = new AV.Query(tableName);
+  return new Promise((resolve,reject) => {
+    query.find().then(
+      (todos) => {
+        let data = todos.filter((item) => {
+          return userId === item.attributes.userId
+        })
+        resolve(data)
+      },
+      (err) => {
+        reject(err);
+      }
+    )
+  })
+  
+}
+
+export function addItem(todoItem){
+  // 增加待办事项
+  let {tableName,userId,text} = todoItem
+  // 声明类型
+  var TodoFolder = AV.Object.extend(tableName);
+  // 新建对象
+  var todoFolder = new TodoFolder();
+  // 设置名称
+  todoFolder.set('text',text);
+  // 设置优先级
+  todoFolder.set('userId',userId);
+  todoFolder.set('isDelete',false);
+  todoFolder.set('isDone',false);
+  return new Promise((resolve,reject) => {
+    todoFolder.save().then(
+      (todo) => {
+        console.log('objectId is ' + todo.id);
+        console.log(todo);
+        resolve(todo);
+      },
+      (error) => {
+        console.error(error);
+        reject(error);
+      }
+    );
+  })
+  
+}
+
+export function doneItem(todoItem){
+  // 完成待办事项
+  let {tableName,todoId,isDone} = todoItem;
+  console.log(todoItem);
+   // 第一个参数是 className，第二个参数是 objectId
+   var todo = AV.Object.createWithoutData(tableName, todoId);
+   // 修改属性
+   console.log(isDone);
+   todo.set('isDone', isDone);
+   // 保存到云端
+   return new Promise((resolve,reject) => {
+    todo.save().then((res) => {
+      console.log(res);
+      resolve(res.attributes);
+    },(err) => {
+      reject(err);
+    });
+   })
+   
+}
+
+export function delItem(todoItem){
+  // 删除待办事项
+  let {tableName,todoId} = todoItem;
+  var todo = AV.Object.createWithoutData(tableName, todoId);
+  return new Promise((resolve,reject) => {
+    todo.destroy().then(
+      (success) => {
+        // 删除成功
+        resolve(success)
+      }, 
+      (error)=> {
+        // 删除失败
+        reject(error)
+      }
+    );
+  })
+  
 }
