@@ -22,7 +22,7 @@ class Forget extends Component{
             <div className="input-group">
               <label>
                 <span className="title">邮箱：</span>
-                <input type="email" placeholder="请输入注册邮箱" name="email" value={this.state.formData.email} onChange={this.getUserInfo.bind(this)}/>
+                <input type="text" placeholder="请输入注册邮箱" name="email" value={this.state.formData.email} onChange={this.getUserInfo.bind(this)} onBlur={this.checkEmail.bind(this)}/>
               </label>
             </div>
             <div className="input-group submit">
@@ -46,7 +46,7 @@ class Forget extends Component{
   getUserInfo(e){
     // 获取用户名和密码
     let stateCopy = JSON.parse(JSON.stringify(this.state));
-    if(e.target.type==='email'){
+    if(e.target.name==='email'){
       stateCopy.formData.email = e.target.value;
     }
     this.setState(stateCopy);
@@ -67,6 +67,16 @@ class Forget extends Component{
       this.props.onToast(this,res.msg);
     }).catch((res) => {
     })
+  }
+  checkEmail(e){
+    // 验证邮箱格式
+    let data = this.state.formData;
+    let reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$"); 
+    if(!reg.test(data.email)){
+      this.props.onToast(this,'邮箱格式不正确')
+      e.target.focus();
+      return false;
+    }
   }
 }
 

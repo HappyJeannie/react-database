@@ -23,13 +23,13 @@ class Login extends Component{
             <div className="input-group">
               <label>
                 <span className="title">用户名：</span>
-                <input type="text" placeholder="请输入用户名" name="username" value={this.state.formData.username} onChange={this.getUserInfo.bind(this)}/>
+                <input type="text" placeholder="请输入用户名" name="username" value={this.state.formData.username} onChange={this.getUserInfo.bind(this)} onBlur={this.checkUsername.bind(this)}/>
               </label>
             </div>
             <div className="input-group">
               <label>
                 <span className="title">密码：</span>
-                <input type="password" placeholder="请输入密码" name="password" value={this.state.formData.password}  onChange={this.getUserInfo.bind(this)}/>
+                <input type="password" placeholder="请输入密码" name="password" value={this.state.formData.password}  onChange={this.getUserInfo.bind(this)} onBlur={this.checkPassword.bind(this)}/>
               </label>
             </div>
             <div className="input-group submit">
@@ -77,6 +77,24 @@ class Login extends Component{
       this.props.onToast(this,res.msg);
     }).catch((res) => {
     })
+  }
+  checkUsername(e){
+    // 验证用户名
+    let data = this.state.formData;
+    if(data.username.length <4){
+      this.props.onToast(this,'用户名至少4个字符')
+      e.target.focus();
+      return false;
+    }
+  }
+  checkPassword(e){
+    // 密码
+    let data = this.state.formData;
+    if(data.password.length < 6){
+      this.props.onToast(this,'密码至少6个字符')
+      e.target.focus();
+      return false;
+    }
   }
 }
 
